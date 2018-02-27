@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Doubly-even order Magic Square. Example : 4,8,12,16,.. (4*n)</title>
+    <title>Magic Square</title>
 </head>
 <body>
     <h3>Doubly-even order Magic Square. Example : 4,8,12,16,.. (4*n)</h3>
-    <p>Enter Value Multiple of 4:</p>
+    <h3>DOdd order Magic Square. Example: 3,5,7,… (2*n +1)</h3>
+
+    <p>Enter Value :</p>
     <input type="text" name="Number" id="value">
     <br>
 
@@ -39,6 +41,20 @@
                 for (var j = 0; j < N; j++)
                     grid[i][j] = (N * i) + j + 1;
             console.log('1-16 Digit ', grid)
+
+            if(N%2!=0){
+                 var calc = (N + 1) / 2;
+                for (var i = 0; i < N; i++) {
+                    for (var j = 0; j < N; j++) {
+                        var row = (calc + i + j) % N;
+                        var col = (calc + i - j - 1 + N) % N + 1;
+                        var op = (row * N) + col
+                        grid[i][j] = (row * N) + col
+                    }
+                }
+                console.log(grid)
+                return grid;  
+            }
 
              for (i = 0; i < N / 4; i++)
                 for (j = 0; j < N / 4; j++)
