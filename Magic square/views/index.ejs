@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Doubly-even order Magic Square. Example : 4,8,12,16,.. (4*n)</title>
+</head>
+<body>
+    <h3>Doubly-even order Magic Square. Example : 4,8,12,16,.. (4*n)</h3>
+    <p>Enter Value Multiple of 4:</p>
+    <input type="text" name="Number" id="value">
+    <br>
+
+    <table id="number" border="1px solid black"></table>
+    <script>
+    var number = document.getElementById("value");
+        number.addEventListener('keyup', function () {
+            var number = parseInt(this.value);
+            console.log(number)
+            var magicSqure = createTable(number);
+            showTable(magicSqure);
+        });
+   
+        function createEnptyArr(N) {
+            var square = new Array();
+            for (var i = 0; i < N; i++) {
+                square.splice(i, 0, new Array());
+                for (var j = 0; j < N; j++) {
+                    square[i].splice(i, 0, 0);
+                }
+            }
+            return square;
+        }
+
+        function createTable(N) {
+            var grid = createEnptyArr(N);
+            for (var i = 0; i < N; i++)
+                for (var j = 0; j < N; j++)
+                    grid[i][j] = (N * i) + j + 1;
+            console.log('1-16 Digit ', grid)
+
+             for (i = 0; i < N / 4; i++)
+                for (j = 0; j < N / 4; j++)
+                    grid[i][j] = (N * N + 1) - grid[i][j];
+            console.log('1st left cornor', grid)
+
+            for (i = 0; i < N / 4; i++)
+                for (j = 3 * (N / 4); j < N; j++)
+                    grid[i][j] = (N * N + 1) - grid[i][j];                
+            console.log('1st right cornor',grid)
+
+             for (i = 3 * N / 4; i < N; i++)
+                for (j = 0; j < N / 4; j++)
+                    grid[i][j] = (N * N + 1) - grid[i][j];
+            console.log('Bottom Left',grid)
+       
+             for (i = 3 * N / 4; i < N; i++)
+                for (j = 3 * N / 4; j < N; j++)
+                    grid[i][j] = (N * N + 1) - grid[i][j];
+            console.log('Bottom right', grid)
+
+            for (i = N / 4; i < 3 * N / 4; i++)
+                for (j = N / 4; j < 3 * N / 4; j++)
+                    grid[i][j] = (N * N + 1) - grid[i][j];
+            console.log("center",grid)
+            return grid;
+
+        }
+        function showTable(data) {
+                var table = '';
+                var tdata = document.getElementById("number");
+                console.log('Length',data.length)
+                for (var i = 0; i < data.length; i++) {
+                    table += '<tr>';
+                    for (var j = 0; j < data[i].length; j++) {
+                        table += '<td>' + data[i][j] + '</td>';
+                    }
+                    table += '</tr>';
+                }
+                tdata.innerHTML = table;
+            }
+
+    </script>
+</body>
+</html>
