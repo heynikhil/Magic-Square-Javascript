@@ -1,4 +1,5 @@
-# Magic Square
+# Magic Square nXn in Javascript
+# Magic Square With JavaScript
 Odd order Magic Square. 
   Example: 3,5,7,… (2*n +1)
 
